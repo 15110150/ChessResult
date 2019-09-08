@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ChessResult.Models.TourRank>
+<h3 class="title-col">Staring Rank</h3>
+    <table class="table table-striped list-progress">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Total Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int counter = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@counter</td>
+                        <td><a class="tour-name">@item.PlayerName</a></td>
+                        <td>@item.TotalMark</td>
+                    </tr>
+                    counter += 1;
+                }
+            }
+        </tbody>
+    </table>
+

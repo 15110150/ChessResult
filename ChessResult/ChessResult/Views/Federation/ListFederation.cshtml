@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ChessResult.Models.Federation>
+<script src="~/scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        loadTournament('0', 'Get All')
+    });
+
+    function loadTournament(id, name) {
+        $('#btnFederation').text(name);
+        var url = "/Tournament/GetListTournament/" + id;
+            $.get(url, function (data) {
+                $('#searchResults').html(data);
+            });
+        };
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="title">
+            Tournament is in progress
+            <div class="dropdown float-right">
+                <button class="btn btn-default dropdown-toggle" id="btnFederation" type="button" data-toggle="dropdown">
+                    Federate
+                </button>
+                <div class="dropdown-menu scrollable-menu">
+                    <a class="dropdown-item" href="#" onclick="loadTournament('0', 'Get All');">Get All</a>
+                    @foreach (var item in Model)
+                    {
+                        <a class="dropdown-item" onclick="loadTournament('@item.ID', '@item.Name');">
+                            <img src="~/img/@item.Flag" alt="" class="flag">
+                            @item.Name
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="searchResults">
+</div>

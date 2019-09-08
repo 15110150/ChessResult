@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Player">
+    <Setting Key="CreatePlayer" SpName="FideProfileManagement_CreateFideProfile" DbName="ChessResultDB"></Setting>
+  </Function>
+  <Function Name="Tournament">
+    <Setting Key="GetAllTournament" SpName="TournamentManagement_GetAllTournaments" DbName="ChessResultDB">
+      <Mapping DataField="TournamentID" ObjectProperty="ID" Class="Tournament" />
+      <Mapping DataField="FederationID" ObjectProperty="ID" Class="Federation" />
+    </Setting>
+    <Setting Key="GetTournamentInProgress" SpName="TournamentManagement_GetTournamentInProgress" DbName="ChessResultDB">
+      <Mapping DataField="TournamentID" ObjectProperty="ID" Class="Tournament" />
+      <Mapping DataField="FederationID" ObjectProperty="ID" Class="Federation" />
+    </Setting>
+    <Setting Key="GetTournamentInProgressByFederation" SpName="TournamentManagement_GetTournamentInProgressByFederation" DbName="ChessResultDB">
+      <Mapping DataField="TournamentID" ObjectProperty="ID" Class="Tournament" />
+      <Mapping DataField="FederationID" ObjectProperty="ID" Class="Federation" />
+    </Setting>
+    <Setting Key="GetSingle" SpName="TournamentManagement_GetTournamentByID" DbName="ChessResultDB">
+      <Mapping DataField="TournamentID" ObjectProperty="ID" Class="Tournament" />
+      <Mapping DataField="FederationID" ObjectProperty="ID" Class="Federation" />
+    </Setting>
+    <Setting Key="GetByFederation" SpName="TournamentManagement_GetTournamentByFederation" DbName="ChessResultDB">
+      <Mapping DataField="TournamentID" ObjectProperty="ID" Class="Tournament" />
+      <Mapping DataField="FederationID" ObjectProperty="ID" Class="Federation" />
+    </Setting>
+    <Setting Key="GetStartingRank" SpName="Tourmanager_GetRank" DbName="ChessResultDB">
+      <Mapping DataField="Name" ObjectProperty="PlayerName" Class="TourRank" />
+    </Setting>
+  </Function>
+  <Function Name="Federation">
+    <Setting Key="GetFederationParticipate" SpName="FederationManagement_GetFederationParticipate" DbName="ChessResultDB">
+      <Mapping DataField="FederationID" ObjectProperty="ID" />
+    </Setting>
+    <Setting Key="GetSingle" SpName="FederationManagement_GetFederationByID" DbName="ChessResultDB">
+      <Mapping DataField="FederationID" ObjectProperty="ID" />
+    </Setting>
+    <Setting Key="GetAllFederation" SpName="FederationManagement_GetAllFederation" DbName="ChessResultDB">
+      <Mapping DataField="FederationID" ObjectProperty="ID" />
+    </Setting>
+  </Function>
+  <Function Name="Round">
+    <Setting Key="GetListRoundByTournament" SpName="RoundManagement_GetListRoundByTournament" DbName="ChessResultDB"></Setting>
+    <Setting Key="GetListPairing" SpName="RoundManager_GetListPairing" DbName="ChessResultDB">
+      <Mapping DataField="Name" ObjectProperty="PlayerName" />
+    </Setting>
+  </Function>
+</Functions>

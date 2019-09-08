@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ChessResult.DTO.PairingDTO>
+
+<h3 class="title-col">Pairing</h3>
+<table class="table table-striped list-progress">
+    <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Mark</th>
+            <th>Mark</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+     
+                    <td><a class="tour-name">@item.PlayerName</a></td>
+                    <td>@item.Mark</td>
+                    <td>@item.Mark</td>
+                    <td><a class="tour-name">@item.PlayerName</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

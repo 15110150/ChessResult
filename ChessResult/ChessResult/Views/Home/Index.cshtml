@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ChessResult.Models.Tournament>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <p class="jumbotron-title">Chess-Result.com</p>
+        <p class="jumbotron-content">the international Chess-Tournament-Result-Server</p>
+        <p>in close cooperation with the Adminnistration and Pairing program Swiss Manager</p>
+    </div>
+</div>
+<div class="container">
+    @{
+        Html.RenderAction("ListFederation", "Federation");
+    }
+</div>

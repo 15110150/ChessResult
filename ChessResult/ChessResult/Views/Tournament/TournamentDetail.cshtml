@@ -1,0 +1,71 @@
+﻿@model ChessResult.Models.Tournament
+@{
+    ViewBag.Title = "TournamentDetail";
+}
+<script src="~/scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        loadStaringRank()
+    });
+
+    function loadPairing(id) {
+        var url = "/Pairing/ListPairing/?tourID=" + @Model.ID +"&roundID=" + id;
+            $.get(url, function (data) {
+                $('#content-data').html(data);
+            });
+    };
+
+    function loadStaringRank() {
+        var url = "/Tournament/GetStartingRank/" + @Model.ID;
+        $.get(url, function (data) {
+            $('#content-data').html(data);
+            });
+    };
+</script>
+<div class="jumbotron tour-detail">
+    <div class="container text-center">
+        <div class="row row-inform">
+            <h4>
+                <strong>@Model.Name</strong>
+            </h4>
+            <p>Federation: @Model.Federation.Name</p>
+            <p>Location: @Model.Location</p>
+            <p>Tournament director: @Model.Director</p>
+            <p>Start Date: @Model.StartDate.ToString("dd/MM/yyyy")</p>
+            <p>End Date: @Model.EndDate.ToString("dd/MM/yyyy")</p>
+            <hr class="d-sm-none" />
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="wrapper">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3 class="title-col">Menu</h3>
+                    </div>
+                    <ul class="list-unstyled list-menu">
+                        <li>
+                            <a onclick="loadStaringRank()" aria-expanded="false">Starting rank</a>
+                        </li>
+                        <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Board Pairings</a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu">
+                                @{foreach (var item in Model.Rounds)
+                                    {
+                                        <li>
+                                            <a onclick="loadPairing('@item.ID');">@item.Name</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="col-lg-6" id="content-data">
+        </div>
+    </div>
+</div>
