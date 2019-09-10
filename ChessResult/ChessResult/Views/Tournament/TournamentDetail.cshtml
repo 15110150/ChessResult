@@ -8,19 +8,6 @@
         loadStaringRank()
     });
 
-    function loadPairing(id) {
-        var url = "/Pairing/ListPairing/?tourID=" + @Model.ID +"&roundID=" + id;
-            $.get(url, function (data) {
-                $('#content-data').html(data);
-            });
-    };
-
-    function loadStaringRank() {
-        var url = "/Tournament/GetStartingRank/" + @Model.ID;
-        $.get(url, function (data) {
-            $('#content-data').html(data);
-            });
-    };
 </script>
 <div class="jumbotron tour-detail">
     <div class="container text-center">
@@ -47,7 +34,9 @@
                     </div>
                     <ul class="list-unstyled list-menu">
                         <li>
-                            <a onclick="loadStaringRank()" aria-expanded="false">Starting rank</a>
+                            <a id="staring-rank"
+                               data-request-url ="@Url.Action("GetStartingRank", "Tournament", new { id = Model.ID })"
+                               aria-expanded="false">Starting rank</a>
                         </li>
                         <li>
                             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Board Pairings</a>
@@ -55,7 +44,9 @@
                                 @{foreach (var item in Model.Rounds)
                                     {
                                         <li>
-                                            <a onclick="loadPairing('@item.ID');">@item.Name</a>
+                                            <a id="@item.ID" 
+                                               data-request-url ="@Url.Action("ListPairing", "Pairing", new { roundID = item.ID, tourID = Model.ID })"
+                                               >@item.Name</a>
                                         </li>
                                     }
                                 }
